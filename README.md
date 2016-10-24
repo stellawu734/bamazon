@@ -10,11 +10,11 @@
 	![insufficient](/screenshots/insufficient.png)
 	* sufficient quantity scenario
 	![sufficient](/screenshots/sufficient.png)
-	This also updates the corresponding department TotalSales column for the executive use later.
+	* This also updates the corresponding department TotalSales column for the executive use later.
 		* the database has been updated accordingly
-		Frozen Beans quantity went from 300 to 290.
+		* Frozen Beans quantity went from 300 to 290.
 		![beans](/screenshots/beans.png)
-		Frozen department totalsales went up to 10.
+		* Frozen department totalsales went up to 10.
 		![frozen](/screenshots/frozen.png)
 
 ##Bamazon Manager Exeprience
@@ -25,9 +25,9 @@
 	* view low inventory
 		* no low inventory
 		![noloq](/screenshots/noloq.png)
-		no products currently have inventory lower than 5
+		* no products currently have inventory lower than 5
 		![high5](/screenshots/high5.png)
-		we will come back to low inventory later - when we add a new product with an inventory lower than 5
+		* we will come back to low inventory later - when we add a new product with an inventory lower than 5
 	* add inventory
 	![addID](/screenshots/addID.png)
 	![addquantity](/screenshots/addquantity.png)
@@ -36,7 +36,7 @@
 	* add new product
 	![addnew](/screenshots/addnew.png)
 	![addsuccess](/screenshots/addsuccess.png)
-	now we will go back to low inventory and check if it works.
+	* now we will go back to low inventory and check if it works.
 		* low inventory
 		![lowinventory](/screenshots/lowinventory.png)
 
@@ -45,14 +45,14 @@
 ![choices](/screenshots/choices.png)
 	* view sales by department
 	![viewsales](/screenshots/viewsales.png)
-	total profit is auto-calculated. right now they are mostly negative because I have not put in much data for sales
+	* total profit is auto-calculated. right now they are mostly negative because I have not put in much data for sales
 	* create a new department
 	![createnew](/screenshots/createnew.png)
 		* name
 		![name](/screenshots/name.png)
 		* overheadcosts
 		![overhead](/screenshots/overhead.png)
-		now we have added a new department named 'Low' - which has the 'low' product we created before using the manager experience.
+		* now we have added a new department named 'Low' - which has the 'low' product we created before using the manager experience.
 		![departmentlow](/screenshots/departmentlow.png)
 
 
