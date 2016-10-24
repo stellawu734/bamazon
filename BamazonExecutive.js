@@ -66,8 +66,8 @@ inquirer.prompt([
 			connection.query('SELECT * FROM departments',function(res,response){
 				if(err) throw err;
 				for (var i = 0; i < response.length; i++) {
-					table1.push(
-							    [res[i].DepartmentID, res[i].DepartmentName, res[i].OverHeadCosts,res[i].TotalSales,res[i].TotalProfit]
+					table2.push(
+							    [response[i].DepartmentID, response[i].DepartmentName, response[i].OverHeadCosts,response[i].TotalSales,(response[i].TotalSales-response[i].OverHeadCosts)]
 							);
 					}
 					console.log(table2.toString());
