@@ -6,7 +6,8 @@
   "dependencies": {
     "inquirer": "^1.2.2",
     "mysql": "^2.11.1",
-    "prompt": "^1.0.0"
+    "prompt": "^1.0.0",
+    "cli-table2": "^0.2.0"
   },
   "devDependencies": {},
   "scripts": {

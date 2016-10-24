@@ -1,12 +1,34 @@
 var mysql = require('mysql');
 var inquirer = require('inquirer');
 var prompt = require('prompt');
+var Table = require('cli-table2');
 var connection = mysql.createConnection({
 	host:'localhost',
 	port:'3306',
 	user:'root',
 	password:'fddx658',
 	database:'bamazon'
+});
+var table1 = new Table({
+chars: { 'top': '═' , 'top-mid': '╤' , 'top-left': '╔' , 'top-right': '╗'
+         , 'bottom': '═' , 'bottom-mid': '╧' , 'bottom-left': '╚' , 'bottom-right': '╝'
+         , 'left': '║' , 'left-mid': '╟' , 'mid': '─' , 'mid-mid': '┼'
+         , 'right': '║' , 'right-mid': '╢' , 'middle': '│' },
+head:['ID','Name','Price','StockQuantity']	
+});
+var table2 = new Table({
+chars: { 'top': '═' , 'top-mid': '╤' , 'top-left': '╔' , 'top-right': '╗'
+         , 'bottom': '═' , 'bottom-mid': '╧' , 'bottom-left': '╚' , 'bottom-right': '╝'
+         , 'left': '║' , 'left-mid': '╟' , 'mid': '─' , 'mid-mid': '┼'
+         , 'right': '║' , 'right-mid': '╢' , 'middle': '│' },
+head:['ID','Name','Price','StockQuantity']	
+});
+var table3 = new Table({
+chars: { 'top': '═' , 'top-mid': '╤' , 'top-left': '╔' , 'top-right': '╗'
+         , 'bottom': '═' , 'bottom-mid': '╧' , 'bottom-left': '╚' , 'bottom-right': '╝'
+         , 'left': '║' , 'left-mid': '╟' , 'mid': '─' , 'mid-mid': '┼'
+         , 'right': '║' , 'right-mid': '╢' , 'middle': '│' },
+head:['ID','Name','Price','StockQuantity']	
 });
 
 inquirer.prompt([
@@ -22,8 +44,9 @@ inquirer.prompt([
 			connection.query('SELECT * FROM produts',function(err,res){
 				if(err) throw err;
 				for (var i = 0; i < res.length; i++) {
-					console.log('ID: '+res[i].ItemID+' Name: '+res[i].ProductName+' Price: '+res[i].Price+' Quantity: '+res[i].StockQuantity);
+					table1.push([res[i].ItemID,res[i].ProductName,res[i].Price,res[i].StockQuantity]);
 				}
+				console.log(table1.toString());
 			})
 		}
 		if(command==='View Low Inventory') {
@@ -33,8 +56,9 @@ inquirer.prompt([
 					console.log('No products currently have a quantity lower than 5.')
 				} else {
 					for (var i = 0; i < res.length; i++) {
-						console.log('ID: '+res[i].ItemID+' Name: '+res[i].ProductName+' Price: '+res[i].Price+' Quantity: '+res[i].StockQuantity);
+						table2.push([res[i].ItemID,res[i].ProductName,res[i].Price,res[i].StockQuantity]);
 					}
+					console.log(table2.toString());
 				}
 			})
 		}
@@ -99,8 +123,9 @@ inquirer.prompt([
 			connection.query('SELECT * FROM produts',function(res,response){
 				if(err) throw err;
 				for (var i = 0; i < response.length; i++) {
-					console.log('ID: '+response[i].ItemID+' Name: '+response[i].ProductName+' Price: '+response[i].Price+' Quantity: '+response[i].StockQuantity);
+					table3.push([response[i].ItemID,response[i].ProductName,response[i].Price,response[i].StockQuantity]);
 					}
+					console.log(table3.toString());
 				});
 			})	
 		})				
