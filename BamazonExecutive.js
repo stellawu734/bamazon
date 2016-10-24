@@ -24,55 +24,90 @@ chars: { 'top': '═' , 'top-mid': '╤' , 'top-left': '╔' , 'top-right': '╗
 head:['ID','Name','OverHeadCosts','TotalSales','TotalProfit']	
 });
 
-inquirer.prompt([
-		{
-			type:'list',
-			message:'You want to: ',
-			name:'command',
-			choices:['View Product Sales by Department','Create New Department']
-		}
-	]).then(function(data){
-		var command = data.command;
-		if(command === 'View Product Sales by Department') {
-			connection.query('SELECT DepartmentID, DepartmentName, OverHeadCosts, TotalSales,(TotalSales-OverHeadCosts) as TotalProfit from departments',function(err,res){
-				if(err) throw err;
-				for (var i = 0; i < res.length; i++) {
-					table1.push(
-							    [res[i].DepartmentID, res[i].DepartmentName, res[i].OverHeadCosts,res[i].TotalSales,res[i].TotalProfit]
-							);
-				}
-				console.log(table1.toString());
-			})
-		}
-		if(command==='Create New Department') {
-			inquirer.prompt([
-		{
-			type:'input',
-			message:'Name: ',
-			name:'Name'
-		},{
-			type:'input',
-			message:'Overhead Costs: ',
-			name:'Overhead'
-		}
-	]).then(function(data){
-			connection.query('INSERT INTO departments SET?',{
-			DepartmentName:data.Name,
-			OverHeadCosts:data.Overhead,
-			TotalSales:0
-		},function(err,res){
-			if(err) throw err;
-			console.log('Department added!');
-			connection.query('SELECT * FROM departments',function(res,response){
-				if(err) throw err;
-				for (var i = 0; i < response.length; i++) {
-					table2.push(
-							    [response[i].DepartmentID, response[i].DepartmentName, response[i].OverHeadCosts,response[i].TotalSales,(response[i].TotalSales-response[i].OverHeadCosts)]
-							);
+var executive = function(){
+	inquirer.prompt([
+			{
+				type:'list',
+				message:'You want to: ',
+				name:'command',
+				choices:['View Product Sales by Department','Create New Department']
+			}
+		]).then(function(data){
+			var command = data.command;
+			if(command === 'View Product Sales by Department') {
+				connection.query('SELECT DepartmentID, DepartmentName, OverHeadCosts, TotalSales,(TotalSales-OverHeadCosts) as TotalProfit from departments',function(err,res){
+					if(err) throw err;
+					for (var i = 0; i < res.length; i++) {
+						table1.push(
+								    [res[i].DepartmentID, res[i].DepartmentName, res[i].OverHeadCosts,res[i].TotalSales,res[i].TotalProfit]
+								);
 					}
-					console.log(table2.toString());
-				});
-			})	
-		})				
-	}
-})
+					console.log(table1.toString());
+					inquirer.prompt([
+									{
+										type:'list',
+										message:'You want to: ',
+										name:'command',
+										choices:['Exit','Go Back']
+									}
+								]).then(function(data){
+									var command = data.command;
+									if(command==='Exit') {
+										process.exit();
+									}
+									if(command==='Go Back') {
+										executive();
+									}
+								})
+				})
+			}
+			if(command==='Create New Department') {
+				inquirer.prompt([
+			{
+				type:'input',
+				message:'Name: ',
+				name:'Name'
+			},{
+				type:'input',
+				message:'Overhead Costs: ',
+				name:'Overhead'
+			}
+		]).then(function(data){
+				connection.query('INSERT INTO departments SET?',{
+				DepartmentName:data.Name,
+				OverHeadCosts:data.Overhead,
+				TotalSales:0
+			},function(err,res){
+				if(err) throw err;
+				console.log('Department added!');
+				connection.query('SELECT * FROM departments',function(res,response){
+					if(err) throw err;
+					for (var i = 0; i < response.length; i++) {
+						table2.push(
+								    [response[i].DepartmentID, response[i].DepartmentName, response[i].OverHeadCosts,response[i].TotalSales,(response[i].TotalSales-response[i].OverHeadCosts)]
+								);
+						}
+						console.log(table2.toString());
+						inquirer.prompt([
+									{
+										type:'list',
+										message:'You want to: ',
+										name:'command',
+										choices:['Exit','Go Back']
+									}
+								]).then(function(data){
+									var command = data.command;
+									if(command==='Exit') {
+										process.exit();
+									}
+									if(command==='Go Back') {
+										executive();
+									}
+								})
+					});
+				})	
+			})				
+		}
+	})
+}
+executive();
