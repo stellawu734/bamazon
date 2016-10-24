@@ -14,7 +14,7 @@
 		* the database has been updated accordingly
 		* Frozen Beans quantity went from 300 to 290.
 		![beans](/screenshots/beans.png)
-		* Frozen department totalsales went up to 10.
+		* Frozen department totalsales went up to 13.
 		![frozen](/screenshots/frozen.png)
 
 ##Bamazon Manager Exeprience
@@ -24,7 +24,7 @@
 	![view](/screenshots/view.png)
 	* view low inventory
 		* no low inventory
-		![noloq](/screenshots/noloq.png)
+		![nolow](/screenshots/noloq.png)
 		* no products currently have inventory lower than 5
 		![high5](/screenshots/high5.png)
 		* we will come back to low inventory later - when we add a new product with an inventory lower than 5
@@ -52,7 +52,7 @@
 		![name](/screenshots/name.png)
 		* overheadcosts
 		![overhead](/screenshots/overhead.png)
-		* now we have added a new department named 'Low' - which has the 'low' product we created before using the manager experience.
+		* now we have added a new department named 'Low' - which has the 'low' product we created before.
 		![departmentlow](/screenshots/departmentlow.png)
 
 
